@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto por WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #16142200;
+        }
+        h1 {
+            color: #fbfefc;
+        }
+        form {
+            background: #ffffff00;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc00;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #dbe7df;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #e5f1ea;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enviar mensaje por WhatsApp</h1>
+    <form id="contactForm">
+        <label for="name">Nombre del cliente:</label>
+        <input type="text" id="name" placeholder="Ingresa tu nombre" required>
+        
+        <label for="phone">Celular del cliente:</label>
+        <input type="text" id="phone" placeholder="Ingresa tu número de celular" required>
+        
+        <label for="message">¿Qué necesitas?</label>
+        <textarea id="message" rows="4" placeholder="Describe qué necesitas" required></textarea>
+        
+        <button type="button" onclick="enviarMensaje()">Enviar por WhatsApp</button>
+    </form>
+
+    <script>
+        function enviarMensaje() {
+            const nombre = document.getElementById("name").value.trim();
+            const celular = document.getElementById("phone").value.trim();
+            const mensaje = document.getElementById("message").value.trim();
+            const fecha = document.getElementById("date").value.trim();
+            const numero = "59164039788";
+
+    
+            if (!nombre || !celular || !mensaje || !fecha) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            const mensajeFinal = `Hola, soy ${nombre}.%0A` +
+                                 `Mi número de celular es: ${celular}.%0A` +
+                                 `Esto es lo que necesito: ${mensaje}.%0A` +
+                                 `Lo necesito para: ${fecha}.`;
+
+       
+            const url = `https://wa.me/${numero}?text=${mensajeFinal}`;
+
+         
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>
